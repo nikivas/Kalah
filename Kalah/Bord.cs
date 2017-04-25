@@ -73,9 +73,6 @@ namespace Kalah
                     }
                 }
             }
-
-
-
             return Ans;
         }
 
@@ -119,8 +116,8 @@ namespace Kalah
                 }
                 if (i == 0 && idy == player && idx == (player == 0 ? 0 : 7))
                     return 1;
-                else if(i==0)
-                    return 0;
+                //else if(i==0)
+                //    return 0;
             }
 
 
@@ -150,10 +147,7 @@ namespace Kalah
 
             return 0;
         }
-
-
-
-
+        
         public int[,] get_board()
         {
             int[,] a = new int[2, 6];
@@ -181,9 +175,6 @@ namespace Kalah
                 return true;
             return false;
         }
-
-        
-
 
     }
 }

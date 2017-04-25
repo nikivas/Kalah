@@ -22,10 +22,13 @@ namespace Kalah
         Bitmap forest = new Bitmap("kalah_new.bmp"); //"forest.jpg"
         Bitmap kalah_pic = new Bitmap("kalah_new.bmp");
         Board brd = new Board(6);
+
+        string first_player_name = "Чоловiч";
+        string second_player_name = "Комплюктер";
         
         PictureBox[,] Cells = new PictureBox[2, 6];
         Label[,] Labels = new Label[2, 7];
-
+        Label current_player;
 
 
         const int TOP_LANE = 277;
@@ -123,7 +126,31 @@ namespace Kalah
             Labels[1, 6] = second_kalah;
             Controls.Add(second_kalah);
 
+            Label first_player = new Label();
+            //first_player.BackColor = Color.Transparent;
+            first_player.Size = new Size(200, 20);
+            first_player.Text = "Игрок #2 - "+second_player_name;
+            first_player.TextAlign = ContentAlignment.MiddleCenter;
+            first_player.Top = 20;
+            first_player.Left = 20;
+            Controls.Add(first_player);
 
+            Label second_player = new Label();
+            //second_player.BackColor = Color.Transparent;
+            second_player.Size = new Size(200, 20);
+            second_player.Text = "Игрок #1 - "+first_player_name;
+            second_player.TextAlign = ContentAlignment.MiddleCenter;
+            second_player.Top = 600;
+            second_player.Left = 20;
+            Controls.Add(second_player);
+
+            current_player = new Label();
+            current_player.Size = new Size(200, 20);
+            current_player.Text = "Текущий ход: "+first_player_name;
+            current_player.TextAlign = ContentAlignment.MiddleCenter;
+            current_player.Top = 180;
+            current_player.Left = 360;
+            Controls.Add(current_player);
 
             update(s);
         }
@@ -156,7 +183,26 @@ namespace Kalah
                     }
                 }
             }
+            
         }
+
+        public void check()
+        {
+            if(Labels[0,6].Text == "36" && Labels[1,6].Text == "36") {
+                MessageBox.Show("Ничья!");
+            } else if(int.Parse(Labels[0,6].Text) > 36) {
+                MessageBox.Show("побдел "+second_player_name);
+            }else if(int.Parse(Labels[1,6].Text) > 36) {
+                MessageBox.Show("победил "+first_player_name);
+            } else {
+                return;
+            }
+            this.brd = new Board(6);
+            update(this.brd.board);
+            flag_on_step = 1;
+            current_player.Text = "Текущий ход: "+first_player_name;
+        }
+
 
         public void FormChanged(object o, EventArgs e)
         {
@@ -188,13 +234,13 @@ namespace Kalah
             if (player != flag_on_step)
                 return;
 
-            if( brd.make_hod(idx, idy) != 1)
-                flag_on_step = (flag_on_step + 1) % 2;
+            if (brd.make_hod(idx, idy) != 1)
+                change_hod();
             update(brd.board);
-            
-            
+            check();
+
             //this.Text = idx.ToString() + "  " + idy.ToString();
-            
+
         }
         
 
@@ -263,11 +309,22 @@ namespace Kalah
         {
             if(flag_on_step == AI_CON)
             {
+                int depth = 6;
+                if (brd.getPossibleBoards(brd, AI_CON).Count < 4)
+                    depth = 7;
                 AI_INTEL.brd = brd;
-                brd = AI_INTEL.make_hod(AI_CON, 6);
+                brd = AI_INTEL.make_hod(AI_CON, depth);
                 update(brd.board);
-                flag_on_step = (flag_on_step + 1) % 2;
+                change_hod();
+                check();
             }
+
+        }
+
+        public void change_hod()
+        {
+            flag_on_step = (flag_on_step + 1) % 2;
+            current_player.Text = flag_on_step == 0 ? "Текущий ход: "+second_player_name : "Текущий ход: "+first_player_name;
 
         }
     }
