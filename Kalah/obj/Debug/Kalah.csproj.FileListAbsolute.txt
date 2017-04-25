@@ -1,0 +1,9 @@
+C:\учеба\Мичник\Kalah\Kalah\Kalah\bin\Debug\Kalah.exe.config
+C:\учеба\Мичник\Kalah\Kalah\Kalah\bin\Debug\Kalah.exe
+C:\учеба\Мичник\Kalah\Kalah\Kalah\bin\Debug\Kalah.pdb
+C:\учеба\Мичник\Kalah\Kalah\Kalah\obj\Debug\Kalah.Form1.resources
+C:\учеба\Мичник\Kalah\Kalah\Kalah\obj\Debug\Kalah.Properties.Resources.resources
+C:\учеба\Мичник\Kalah\Kalah\Kalah\obj\Debug\Kalah.csproj.GenerateResource.Cache
+C:\учеба\Мичник\Kalah\Kalah\Kalah\obj\Debug\Kalah.exe
+C:\учеба\Мичник\Kalah\Kalah\Kalah\obj\Debug\Kalah.pdb
+C:\учеба\Мичник\Kalah\Kalah\Kalah\obj\Debug\Kalah.csprojResolveAssemblyReference.cache
