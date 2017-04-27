@@ -21,6 +21,16 @@ namespace Kalah
         Bitmap snow = new Bitmap("snow.gif");
         Bitmap forest = new Bitmap("kalah_new.bmp"); //"forest.jpg"
         Bitmap kalah_pic = new Bitmap("kalah_new.bmp");
+
+        Bitmap one = new Bitmap("1.png");
+        Bitmap two = new Bitmap("2.png");
+        Bitmap three = new Bitmap("3.png");
+        Bitmap four = new Bitmap("4.png");
+        Bitmap five = new Bitmap("5.png");
+        Bitmap many = new Bitmap("mnogo.png");
+
+
+
         Board brd = new Board(6);
 
         string first_player_name = "Чоловiч";
@@ -73,13 +83,15 @@ namespace Kalah
                 for (int j = 0; j < 6; j++)
                 {
                     Label buf_l = new Label();
-                    buf_l.BackColor = Color.Red;
-                    
-                    buf_l.Top = i == 0 ? TOP_LANE -45 : BOT_LANE - 45;
+                    buf_l.BackColor = Color.Transparent;
+
+                    buf_l.Top = i == 0 ? TOP_LANE - 50 : BOT_LANE - 50;
                     buf_l.Left = borders[j, 1]-9;
-                    buf_l.Height = 13;
+                    buf_l.Height = 16;
                     buf_l.Width = borders[j, 2] - borders[j, 1];
-                    buf_l.TextAlign = ContentAlignment.MiddleCenter;
+                    buf_l.TextAlign = ContentAlignment.TopCenter;
+
+                    buf_l.Font = new Font(buf_l.Font.Name, 12.0f, FontStyle.Regular);
                     
                     buf_l.Click += new System.EventHandler(this.kalah_Click);
 
@@ -94,6 +106,8 @@ namespace Kalah
                     buf.BackColor = Color.Transparent;
                     buf.Image = null;
 
+                    buf.SizeMode = PictureBoxSizeMode.StretchImage;
+
                     buf.Click += new System.EventHandler(this.kalah_Click);
                     
 
@@ -105,24 +119,26 @@ namespace Kalah
                 }
             }
             Label first_kalah = new Label();
-            first_kalah.Top = 220;
-            first_kalah.Left = 200;
-            first_kalah.Width = 60;
-            first_kalah.Height = 13;
+            first_kalah.Top = 240;
+            first_kalah.Left = 190;
+            first_kalah.Width = 80;
+            first_kalah.Height = 150;
             first_kalah.Text = "0";
-            first_kalah.BackColor = Color.Red;
+            first_kalah.BackColor = Color.Transparent;
             first_kalah.TextAlign = ContentAlignment.MiddleCenter;
+            first_kalah.Font = new Font(first_kalah.Font.Name, 32.0f, FontStyle.Regular);
             Labels[0, 6] = first_kalah;
             Controls.Add(first_kalah);
 
             Label second_kalah = new Label();
-            second_kalah.Top = 400;
+            second_kalah.Top = 240;
             second_kalah.Left = 720;
-            second_kalah.Width = 60;
-            second_kalah.Height = 13;
+            second_kalah.Width = 80;
+            second_kalah.Height = 150;
             second_kalah.Text = "0";
-            second_kalah.BackColor = Color.Red;
+            second_kalah.BackColor = Color.Transparent;
             second_kalah.TextAlign = ContentAlignment.MiddleCenter;
+            second_kalah.Font = new Font(second_kalah.Font.Name, 32.0f, FontStyle.Regular);
             Labels[1, 6] = second_kalah;
             Controls.Add(second_kalah);
 
@@ -133,6 +149,7 @@ namespace Kalah
             first_player.TextAlign = ContentAlignment.MiddleCenter;
             first_player.Top = 20;
             first_player.Left = 20;
+            first_player.Font = new Font(first_player.Font.Name, 12.0f, FontStyle.Regular);
             Controls.Add(first_player);
 
             Label second_player = new Label();
@@ -142,14 +159,19 @@ namespace Kalah
             second_player.TextAlign = ContentAlignment.MiddleCenter;
             second_player.Top = 600;
             second_player.Left = 20;
+            second_player.Font = new Font(second_player.Font.Name, 12.0f, FontStyle.Regular);
             Controls.Add(second_player);
-
+            //185, 810 
             current_player = new Label();
             current_player.Size = new Size(200, 20);
+            current_player.BackColor = Color.Transparent;
             current_player.Text = "Текущий ход: "+first_player_name;
-            current_player.TextAlign = ContentAlignment.MiddleCenter;
-            current_player.Top = 180;
-            current_player.Left = 360;
+            current_player.TextAlign = ContentAlignment.MiddleLeft;
+            current_player.Top = 150;
+            current_player.Height = 50;
+            current_player.Width = 625;
+            current_player.Left = 280;
+            current_player.Font = new Font(current_player.Font.Name, 32.0f, FontStyle.Regular);
             Controls.Add(current_player);
 
             update(s);
@@ -171,15 +193,27 @@ namespace Kalah
                     }
                     else if (s[i, j + 1] == 1)
                     {
-                        Cells[i,j].Image = null;
+                        Cells[i,j].Image = one;
                     }
                     else if (s[i, j + 1] == 2)
                     {
-                        Cells[i, j].Image = null;
+                        Cells[i, j].Image = two;
+                    }
+                    else if(s[i,j+1]==3)
+                    {
+                        Cells[i, j].Image = three;
+                    }
+                    else if (s[i, j + 1] == 4)
+                    {
+                        Cells[i, j].Image = four;
+                    }
+                    else if (s[i, j + 1] == 5)
+                    {
+                        Cells[i, j].Image = five;
                     }
                     else
                     {
-                        Cells[i, j].Image = null;
+                        Cells[i, j].Image = many;
                     }
                 }
             }
