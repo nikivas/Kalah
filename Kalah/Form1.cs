@@ -13,10 +13,10 @@ namespace Kalah
     public partial class Form1 : Form
     {
         int flag_on_step = 1;
-        const int AI_CON = 0;
+        const int AI_CON = 1;
         AI AI_INTEL = new AI();
-        // 0 - bot player
-        // 1 - top player
+        // 0 - top player
+        // 1 - bot player
 
         Bitmap snow = new Bitmap("snow.gif");
         Bitmap forest = new Bitmap("kalah_new.bmp"); //"forest.jpg"
@@ -119,20 +119,22 @@ namespace Kalah
                 }
             }
             Label first_kalah = new Label();
-            first_kalah.Top = 240;
-            first_kalah.Left = 190;
+            first_kalah.Top = 243;
+            first_kalah.Left = 194;
             first_kalah.Width = 80;
             first_kalah.Height = 150;
             first_kalah.Text = "0";
             first_kalah.BackColor = Color.Transparent;
             first_kalah.TextAlign = ContentAlignment.MiddleCenter;
-            first_kalah.Font = new Font(first_kalah.Font.Name, 32.0f, FontStyle.Regular);
+            first_kalah.Font = new Font(first_kalah.Font.Name, 32.0f, FontStyle.Regular);//first_kalah.Font.Name
+            Font a = new Font(first_kalah.Font.Name, 32.0f, FontStyle.Regular);
+            
             Labels[0, 6] = first_kalah;
             Controls.Add(first_kalah);
 
             Label second_kalah = new Label();
-            second_kalah.Top = 240;
-            second_kalah.Left = 720;
+            second_kalah.Top = 243;
+            second_kalah.Left = 713;
             second_kalah.Width = 80;
             second_kalah.Height = 150;
             second_kalah.Text = "0";
@@ -144,33 +146,33 @@ namespace Kalah
 
             Label first_player = new Label();
             //first_player.BackColor = Color.Transparent;
-            first_player.Size = new Size(200, 20);
+            first_player.Size = new Size(300, 30);
             first_player.Text = "Игрок #2 - "+second_player_name;
             first_player.TextAlign = ContentAlignment.MiddleCenter;
             first_player.Top = 20;
             first_player.Left = 20;
-            first_player.Font = new Font(first_player.Font.Name, 12.0f, FontStyle.Regular);
+            first_player.Font = new Font(first_player.Font.Name, 14.0f, FontStyle.Regular);//"Lucida Calligraphy"
             Controls.Add(first_player);
 
             Label second_player = new Label();
             //second_player.BackColor = Color.Transparent;
-            second_player.Size = new Size(200, 20);
+            second_player.Size = new Size(300, 30);
             second_player.Text = "Игрок #1 - "+first_player_name;
             second_player.TextAlign = ContentAlignment.MiddleCenter;
             second_player.Top = 600;
             second_player.Left = 20;
-            second_player.Font = new Font(second_player.Font.Name, 12.0f, FontStyle.Regular);
+            second_player.Font = new Font(second_player.Font.Name, 14.0f, FontStyle.Regular);
             Controls.Add(second_player);
             //185, 810 
             current_player = new Label();
-            current_player.Size = new Size(200, 20);
+            current_player.Size = new Size(300, 20);
             current_player.BackColor = Color.Transparent;
             current_player.Text = "Текущий ход: "+first_player_name;
             current_player.TextAlign = ContentAlignment.MiddleLeft;
             current_player.Top = 150;
             current_player.Height = 50;
             current_player.Width = 625;
-            current_player.Left = 280;
+            current_player.Left = 270;
             current_player.Font = new Font(current_player.Font.Name, 32.0f, FontStyle.Regular);
             Controls.Add(current_player);
 
@@ -357,7 +359,7 @@ namespace Kalah
 
         public void change_hod()
         {
-            flag_on_step = (flag_on_step + 1) % 2;
+            flag_on_step = flag_on_step^1;
             current_player.Text = flag_on_step == 0 ? "Текущий ход: "+second_player_name : "Текущий ход: "+first_player_name;
 
         }

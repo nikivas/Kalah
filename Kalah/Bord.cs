@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 namespace Kalah
 {
 
-    
-
     class Board
     {
         const int N = 7;
@@ -50,7 +48,7 @@ namespace Kalah
             {   { 0, 6, 6, 6, 6, 6, 6, -1 },
                 { -1, 6, 6, 6, 6, 6, 6, 0 }  };
         }
-
+         
         public List<Board> getPossibleBoards(Board brd, int player)
         {
             
@@ -93,7 +91,7 @@ namespace Kalah
             {
                 if (idx + incr > N || idx + incr < 0)
                 {
-                    idy = (idy + 1) % 2;
+                    idy = idy^1;
                     idx = idy == 0 ? 7 : 0;
                     incr *= -1;
                 }
@@ -109,10 +107,10 @@ namespace Kalah
                 i--;
                 board[idy, idx]++;
                 
-                if (i == 0 && board[idy,idx] == 1 && idy == player && board[(player + 1) % 2, idx] != -1)
+                if (i == 0 && board[idy,idx] == 1 && idy == player && board[player^1, idx] != -1)
                 {
-                    board[player, player == 0 ? 0 : 7] += board[(player + 1) % 2, idx ];
-                    board[(player + 1) % 2, idx] = 0;
+                    board[player, player == 0 ? 0 : 7] += board[player^1, idx ];
+                    board[player^1, idx] = 0;
                 }
                 if (i == 0 && idy == player && idx == (player == 0 ? 0 : 7))
                     return 1;

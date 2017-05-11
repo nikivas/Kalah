@@ -44,7 +44,7 @@ namespace Kalah
             Board tmp = pos_boards[0];
             for(int i = 0; i < pos_boards.Count;i++)
             {
-                int rating = max_f(pos_boards[i], (AI_CON + 1) % 2, depth, -EPIC_BIG_NUMBER, EPIC_BIG_NUMBER);
+                int rating = min_f(pos_boards[i], AI_CON^1, depth, -EPIC_BIG_NUMBER, EPIC_BIG_NUMBER);
                 pos_moves.Add(new logic(pos_boards[i], rating));
                 if(max< rating)
                 {
@@ -88,7 +88,7 @@ namespace Kalah
             int score = beta;
             for(int i=0;i<tmp.Count;i++)
             {
-                int buf = max_f(tmp[i], (player + 1) % 2, depth - 1,alpha, score);
+                int buf = max_f(tmp[i], player^1, depth - 1,alpha, score);
                 if (score > buf)
                     score = buf;
                 if (score <= alpha)
